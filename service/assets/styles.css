@@ -1,0 +1,636 @@
+:root {
+  --ink: #25231f;
+  --muted: #6f665d;
+  --paper: #fbf4e8;
+  --paper-deep: #f1dfc2;
+  --line: #decda9;
+  --accent: #24726a;
+  --accent-dark: #15524c;
+  --danger: #a74338;
+  --gold: #b98227;
+  --sky: #597f9e;
+  --shadow: 0 24px 60px rgba(66, 48, 28, 0.18);
+  --radius: 8px;
+  font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #f4ead9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(36, 114, 106, 0.14), transparent 24rem),
+    linear-gradient(110deg, rgba(255, 255, 255, 0.35), transparent 32rem),
+    #efe1ca;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  opacity: 0.38;
+  background-image:
+    linear-gradient(rgba(71, 55, 36, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(71, 55, 36, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(94, 72, 48, 0.16);
+  background: rgba(247, 239, 224, 0.88);
+  backdrop-filter: blur(16px);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1120px, calc(100% - 32px));
+  min-height: 72px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  color: var(--paper);
+  background: var(--ink);
+  font-family: "Patrick Hand", "Gaegu", cursive;
+  font-size: 1.35rem;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.nav-links a {
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+  background: rgba(36, 114, 106, 0.1);
+}
+
+main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  padding: 54px 0 72px;
+  gap: 44px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 780px;
+  margin-bottom: 20px;
+  font-family: "Gaegu", "Noto Sans KR", cursive;
+  font-size: clamp(3rem, 8vw, 5.8rem);
+  line-height: 0.95;
+}
+
+.hero-copy > p:not(.eyebrow) {
+  max-width: 690px;
+  color: #4f473f;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.hero-actions,
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button,
+.filter,
+.complete-btn,
+.delete-btn {
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+}
+
+.primary {
+  color: #fffdf7;
+  background: var(--accent);
+  box-shadow: 0 10px 22px rgba(21, 82, 76, 0.22);
+}
+
+.primary:hover {
+  background: var(--accent-dark);
+}
+
+.secondary {
+  color: var(--ink);
+  border: 1px solid rgba(37, 35, 31, 0.18);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.full {
+  width: 100%;
+}
+
+.paper-preview,
+.quest-form,
+.quest-board,
+.content-section {
+  position: relative;
+  border: 1px solid rgba(94, 72, 48, 0.16);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(90deg, rgba(167, 67, 56, 0.22) 0 2px, transparent 2px 100%) 34px 0 / 100% 100%,
+    repeating-linear-gradient(to bottom, transparent 0 34px, rgba(68, 97, 132, 0.18) 35px 36px),
+    var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.paper-preview {
+  min-height: 410px;
+  padding: 60px 42px 34px 64px;
+  transform: rotate(1.4deg);
+}
+
+.paper-preview::after,
+.quest-form::after,
+.quest-board::after,
+.content-section::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  border-radius: inherit;
+  background-image: radial-gradient(rgba(64, 45, 25, 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.28;
+}
+
+.tape {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 132px;
+  height: 36px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: rgba(226, 198, 125, 0.62);
+  box-shadow: 0 4px 10px rgba(70, 51, 22, 0.12);
+}
+
+.handwritten-title,
+.paper-preview li {
+  font-family: "Gaegu", "Patrick Hand", cursive;
+}
+
+.handwritten-title {
+  margin-bottom: 18px;
+  color: var(--danger);
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.paper-preview ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.paper-preview li {
+  margin-bottom: 18px;
+  font-size: 1.45rem;
+}
+
+.app-shell,
+.content-section {
+  scroll-margin-top: 92px;
+}
+
+.app-shell {
+  padding: 38px 0 28px;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 22px;
+}
+
+.section-heading h2 {
+  margin-bottom: 8px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.section-heading p:last-child {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.quest-form {
+  padding: 28px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 7px;
+  color: #50463c;
+  font-weight: 800;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid rgba(94, 72, 48, 0.22);
+  border-radius: var(--radius);
+  color: var(--ink);
+  background: rgba(255, 253, 247, 0.74);
+}
+
+.field input,
+.field select {
+  height: 46px;
+  padding: 0 12px;
+}
+
+.field textarea {
+  min-height: 116px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.quest-board {
+  min-height: 500px;
+  padding: 26px;
+}
+
+.board-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.board-top h3 {
+  margin-bottom: 4px;
+  font-size: 1.4rem;
+}
+
+#quest-summary {
+  margin: 0;
+  color: var(--muted);
+}
+
+.filters {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 4px;
+  border: 1px solid rgba(94, 72, 48, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.filter {
+  min-height: 34px;
+  padding: 0 12px;
+  color: var(--muted);
+  background: transparent;
+}
+
+.filter.is-active {
+  color: #fffdf7;
+  background: var(--ink);
+}
+
+.quest-list {
+  display: grid;
+  gap: 14px;
+}
+
+.empty-state {
+  padding: 42px 20px;
+  border: 1px dashed rgba(94, 72, 48, 0.35);
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.quest-card {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid rgba(94, 72, 48, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 247, 0.72);
+}
+
+.quest-card.is-done {
+  opacity: 0.68;
+}
+
+.monster-symbol {
+  display: grid;
+  width: 62px;
+  height: 62px;
+  place-items: center;
+  border: 2px solid rgba(37, 35, 31, 0.8);
+  border-radius: 50%;
+  color: var(--ink);
+  background: #f2c46f;
+  font-family: "Patrick Hand", "Gaegu", cursive;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.monster-symbol::before {
+  content: attr(data-symbol);
+}
+
+.quest-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.monster-name {
+  margin: 0 0 2px;
+  color: var(--danger);
+  font-family: "Gaegu", "Patrick Hand", cursive;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.task-title {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+}
+
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 9px;
+  border-radius: 999px;
+  color: #fffdf7;
+  background: var(--sky);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.difficulty-badge.hard,
+.difficulty-badge.boss {
+  background: var(--danger);
+}
+
+.difficulty-badge.easy {
+  background: var(--accent);
+}
+
+.task-note {
+  margin-bottom: 12px;
+  color: #4f473f;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.quest-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.status-label.is-overdue {
+  color: var(--danger);
+}
+
+.complete-btn,
+.delete-btn {
+  padding: 0 13px;
+}
+
+.complete-btn {
+  color: #fffdf7;
+  background: var(--accent);
+}
+
+.delete-btn {
+  color: var(--danger);
+  background: rgba(167, 67, 56, 0.1);
+}
+
+.content-section {
+  margin: 40px 0;
+  padding: 34px;
+}
+
+.prose {
+  max-width: 920px;
+  color: #4f473f;
+  line-height: 1.85;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.feature-grid article {
+  padding: 20px;
+  border: 1px solid rgba(94, 72, 48, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 247, 0.68);
+}
+
+.feature-grid h3 {
+  margin-bottom: 8px;
+}
+
+.feature-grid p {
+  margin-bottom: 0;
+  color: #574f46;
+  line-height: 1.7;
+}
+
+.site-footer {
+  padding: 34px 16px 44px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 34px;
+  }
+
+  .paper-preview {
+    transform: none;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 0;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+  }
+
+  h1 {
+    font-size: 3.1rem;
+  }
+
+  .paper-preview {
+    min-height: 320px;
+    padding: 48px 24px 28px 42px;
+  }
+
+  .quest-form,
+  .quest-board,
+  .content-section {
+    padding: 20px;
+  }
+
+  .board-top,
+  .quest-head {
+    flex-direction: column;
+  }
+
+  .filters {
+    width: 100%;
+  }
+
+  .filter {
+    flex: 1;
+  }
+
+  .quest-card {
+    grid-template-columns: 1fr;
+  }
+
+  .monster-symbol {
+    width: 54px;
+    height: 54px;
+  }
+
+  .two-column,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}

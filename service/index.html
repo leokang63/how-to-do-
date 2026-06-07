@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monster Memo Hunt - 몬스터 토벌 Todo 리스트</title>
+    <meta name="description" content="해야 할 일을 몬스터로 기록하고 정해진 시간 안에 토벌하듯 완료하는 감성적인 종이 노트 스타일 Todo 리스트 웹앱입니다.">
+    <meta name="keywords" content="todo 리스트, 할 일 관리, 몬스터 토벌, 시간 관리, 한국어 todo, 정적 웹앱, Cloudflare Pages">
+    <meta name="author" content="Monster Memo Hunt">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f7efe0">
+    <link rel="canonical" href="https://example.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Monster Memo Hunt - 몬스터 토벌 Todo 리스트">
+    <meta property="og:description" content="할 일을 몬스터로 바꾸고, 제한 시간을 정해 직접 토벌하는 종이 노트 감성의 Todo 리스트입니다.">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:url" content="https://example.com/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Monster Memo Hunt">
+    <meta name="twitter:description" content="메모한 일을 몬스터로 지정하고 시간 안에 토벌하는 Todo 리스트 웹앱입니다.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Patrick+Hand&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Monster Memo Hunt",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Any",
+        "description": "해야 할 일을 몬스터로 지정하고 제한 시간 안에 완료하며 관리하는 정적 Todo 리스트 웹앱입니다.",
+        "inLanguage": ["ko", "en"],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="주요 메뉴">
+        <a class="brand" href="#app" aria-label="Monster Memo Hunt 홈">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span>Monster Memo Hunt</span>
+        </a>
+        <div class="nav-links">
+          <a href="#app">토벌 노트</a>
+          <a href="#about">사이트 소개</a>
+          <a href="#features">기능 소개</a>
+          <a href="#privacy">개인정보처리방침</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Paper note todo web app</p>
+          <h1 id="hero-title">할 일을 몬스터로 적고, 시간 안에 토벌하세요.</h1>
+          <p>
+            Monster Memo Hunt는 평범한 체크리스트 대신 해야 할 일을 몬스터로 지정하고
+            제한 시간을 정해 완료하는 생산성 웹앱입니다. 손글씨 노트처럼 편안한 화면에서
+            오늘의 할 일, 마감 시간, 토벌 상태를 한눈에 관리할 수 있습니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#app">토벌 시작</a>
+            <a class="button secondary" href="#features">기능 보기</a>
+          </div>
+        </div>
+        <div class="paper-preview" aria-label="종이 노트 미리보기">
+          <div class="tape"></div>
+          <p class="handwritten-title">Today's Hunt</p>
+          <ul>
+            <li>잠자는 이메일 정리 - 25분</li>
+            <li>보고서 초안 작성 - 90분</li>
+            <li>운동 루틴 완료 - 40분</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="app" class="app-shell" aria-labelledby="app-title">
+        <div class="section-heading">
+          <p class="eyebrow">Battle notebook</p>
+          <h2 id="app-title">토벌 노트</h2>
+          <p>메모, 몬스터 이름, 토벌 시간을 적으면 브라우저에 자동 저장됩니다.</p>
+        </div>
+
+        <div class="workspace">
+          <form id="quest-form" class="quest-form" autocomplete="off">
+            <div class="field">
+              <label for="task-title">해야 할 일</label>
+              <input id="task-title" name="taskTitle" type="text" maxlength="80" placeholder="예: 블로그 글 초안 작성" required>
+            </div>
+            <div class="field">
+              <label for="monster-name">몬스터 이름</label>
+              <input id="monster-name" name="monsterName" type="text" maxlength="40" placeholder="비워두면 자동 생성됩니다">
+            </div>
+            <div class="field two-column">
+              <div>
+                <label for="hunt-date">토벌 날짜</label>
+                <input id="hunt-date" name="huntDate" type="date" required>
+              </div>
+              <div>
+                <label for="hunt-time">토벌 시간</label>
+                <input id="hunt-time" name="huntTime" type="time" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="difficulty">난이도</label>
+              <select id="difficulty" name="difficulty">
+                <option value="easy">가벼움</option>
+                <option value="normal" selected>보통</option>
+                <option value="hard">강함</option>
+                <option value="boss">보스급</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="task-note">메모</label>
+              <textarea id="task-note" name="taskNote" rows="4" maxlength="240" placeholder="준비물, 세부 단계, 완료 기준 등을 적어두세요"></textarea>
+            </div>
+            <button class="button primary full" type="submit">몬스터 등록</button>
+          </form>
+
+          <div class="quest-board">
+            <div class="board-top">
+              <div>
+                <h3>등록된 몬스터</h3>
+                <p id="quest-summary">아직 등록된 몬스터가 없습니다.</p>
+              </div>
+              <div class="filters" role="group" aria-label="토벌 상태 필터">
+                <button type="button" class="filter is-active" data-filter="all">전체</button>
+                <button type="button" class="filter" data-filter="open">대기</button>
+                <button type="button" class="filter" data-filter="done">토벌</button>
+              </div>
+            </div>
+            <div id="quest-list" class="quest-list" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="content-section" aria-labelledby="about-title">
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2 id="about-title">사이트 소개</h2>
+        </div>
+        <div class="prose">
+          <p>
+            Monster Memo Hunt는 사용자가 해야 할 일을 조금 더 재미있고 직관적으로 관리할 수 있도록 만든
+            정적 Todo 리스트 서비스입니다. 단순히 체크박스를 채우는 방식에서 벗어나, 각각의 일을 하나의
+            몬스터로 설정하고 정해진 시간에 맞춰 토벌하는 흐름을 제공합니다.
+          </p>
+          <p>
+            이 사이트는 HTML, CSS, JavaScript만으로 동작하도록 제작되어 Cloudflare Pages 같은 정적 호스팅
+            환경에 쉽게 배포할 수 있습니다. 서버 계정 생성이나 로그인 없이 사용할 수 있으며, 작성한 데이터는
+            사용자의 브라우저 저장소에 보관됩니다.
+          </p>
+          <p>
+            종이 위에 손글씨로 적는 듯한 시각적 분위기를 목표로 했으며, 한국어와 영어가 모두 자연스럽게
+            보이도록 웹폰트와 시스템 폰트 대체 설정을 함께 적용했습니다.
+          </p>
+        </div>
+      </section>
+
+      <section id="features" class="content-section" aria-labelledby="features-title">
+        <div class="section-heading">
+          <p class="eyebrow">Features</p>
+          <h2 id="features-title">기능 소개</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <h3>몬스터형 Todo 등록</h3>
+            <p>해야 할 일, 몬스터 이름, 난이도, 날짜와 시간을 입력해 하나의 토벌 목표로 관리할 수 있습니다.</p>
+          </article>
+          <article>
+            <h3>브라우저 자동 저장</h3>
+            <p>등록한 내용은 localStorage에 저장되므로 같은 기기와 브라우저에서 다시 접속해도 목록이 유지됩니다.</p>
+          </article>
+          <article>
+            <h3>상태 필터</h3>
+            <p>전체, 대기 중, 토벌 완료 상태로 목록을 빠르게 분류해 현재 해야 할 일을 확인할 수 있습니다.</p>
+          </article>
+          <article>
+            <h3>정적 배포 최적화</h3>
+            <p>별도 백엔드 없이 동작하도록 구성했으며, SEO 메타 태그와 구조화 데이터를 포함했습니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="privacy" class="content-section" aria-labelledby="privacy-title">
+        <div class="section-heading">
+          <p class="eyebrow">Privacy policy</p>
+          <h2 id="privacy-title">개인정보처리방침</h2>
+        </div>
+        <div class="prose">
+          <p>
+            Monster Memo Hunt는 기본 사용 과정에서 회원가입, 로그인, 이름, 이메일 주소, 전화번호와 같은
+            개인식별정보를 요구하지 않습니다. 사용자가 입력한 할 일, 몬스터 이름, 메모, 날짜 및 시간 정보는
+            서버로 전송되지 않고 사용자의 브라우저 localStorage에 저장됩니다.
+          </p>
+          <p>
+            브라우저 저장소에 보관된 데이터는 사용자가 이용 중인 기기와 브라우저 환경에 남아 있으며, 브라우저
+            데이터 삭제, 시크릿 모드 종료, 저장소 초기화 등의 경우 사라질 수 있습니다. 중요한 업무 기록은 별도로
+            백업하는 것을 권장합니다.
+          </p>
+          <p>
+            향후 광고 서비스, 웹 분석 도구, 문의 기능 등 외부 서비스가 추가될 경우 쿠키, 광고 식별자, 접속 통계와
+            관련된 처리 항목이 발생할 수 있습니다. 이 경우 실제 적용 전에 개인정보처리방침을 갱신하고, 필요한 고지와
+            동의 절차를 제공할 예정입니다.
+          </p>
+          <p>
+            개인정보 관련 문의가 필요한 경우 사이트 운영자가 별도로 공개한 연락 수단을 통해 문의할 수 있습니다.
+            본 문구는 정적 사이트 운영을 위한 기본 안내이며, 실제 서비스 공개 전 운영 주체, 연락처, 광고 및 분석 도구
+            사용 여부에 맞춰 최종 검토해야 합니다.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Monster Memo Hunt. Static todo web app for playful time management.</p>
+    </footer>
+
+    <template id="quest-card-template">
+      <article class="quest-card">
+        <div class="monster-symbol" aria-hidden="true"></div>
+        <div class="quest-content">
+          <div class="quest-head">
+            <div>
+              <p class="monster-name"></p>
+              <h4 class="task-title"></h4>
+            </div>
+            <span class="difficulty-badge"></span>
+          </div>
+          <p class="task-note"></p>
+          <div class="quest-meta">
+            <span class="deadline"></span>
+            <span class="status-label"></span>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="complete-btn"></button>
+            <button type="button" class="delete-btn">삭제</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="assets/app.js" defer></script>
+  </body>
+</html>
